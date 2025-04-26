@@ -1,1 +1,1 @@
-# brazilian-banks-directory-ui
+# banks-directory-ui
