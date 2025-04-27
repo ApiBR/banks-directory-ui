@@ -15,7 +15,7 @@ function App() {
   }, [t, i18n.language]);
 
   return (
-    <ThemeProvider defaultTheme="system" storageKey="brazilian-banks-theme">
+    <ThemeProvider defaultTheme="system" storageKey="banks-directory-theme">
       <Router basename="/ui/banks-directory">
         <div className="min-h-screen bg-background text-foreground flex flex-col">
           <Header />
