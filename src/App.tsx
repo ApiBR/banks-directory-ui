@@ -16,7 +16,7 @@ function App() {
 
   return (
     <ThemeProvider defaultTheme="system" storageKey="brazilian-banks-theme">
-      <Router>
+      <Router basename="/ui/banks-directory">
         <div className="min-h-screen bg-background text-foreground flex flex-col">
           <Header />
           <div className="flex-1">
