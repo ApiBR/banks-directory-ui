@@ -157,12 +157,12 @@ export function MainContent() {
     <main className="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
       <div className="space-y-6">
         <div className="flex flex-col md:flex-row md:items-center md:space-x-4">
-          <div className="flex-grow">
+          <div className="grow">
             <SearchBar value={search} onChange={setSearch} />
           </div>
         </div>
         
-        <div className="bg-card p-4 rounded-lg shadow-sm">
+        <div className="bg-card p-4 rounded-lg shadow-xs">
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-lg font-medium text-card-foreground">{t('filters.title')}</h2>
             <div className="flex space-x-4 text-sm">
