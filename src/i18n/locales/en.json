@@ -1,0 +1,78 @@
+{
+  "title": "Banks Directory",
+  "htmlTitle": "Banks Directory",
+  "search": {
+    "placeholder": "Search by name or COMPE..."
+  },
+  "sort": {
+    "label": "Sort by",
+    "options": {
+      "compe": "COMPE",
+      "name": "Name",
+      "ispb": "ISPB",
+      "operationStarted": "Operation Started",
+      "registered": "Registration Date",
+      "pixStarted": "PIX Started",
+      "updated": "Last Updated"
+    }
+  },
+  "filters": {
+    "title": "Filters",
+    "pixType": {
+      "label": "PIX Type",
+      "all": "All (DRCT + IDRT + Not PSP)",
+      "direct": "Direct PSP (DRCT)",
+      "indirect": "Indirect PSP (IDRT)",
+      "both": "Direct & Indirect PSP",
+      "notPsp": "Not a PSP"
+    },
+    "options": {
+      "all": "All",
+      "yes": "Yes",
+      "no": "No"
+    },
+    "labels": {
+      "charge": "Charge",
+      "creditDocument": "Credit Document",
+      "legalCheque": "Legal Cheque",
+      "detectaFlow": "Detecta Flow",
+      "pcr": "PCR",
+      "pcrp": "PCRP"
+    }
+  },
+  "bank": {
+    "products": "Products",
+    "dates": {
+      "operationStarted": "Operation Started",
+      "pixStarted": "PIX Started",
+      "registered": "Registered",
+      "updated": "Updated"
+    },
+    "pixType": {
+      "direct": "Direct PSP",
+      "indirect": "Indirect PSP",
+      "notPsp": "Not a PSP"
+    },
+    "count": {
+      "total": "Total Banks",
+      "filtered": "Filtered Banks"
+    }
+  },
+  "pagination": {
+    "itemsPerPage": "Items per page",
+    "showing": "Showing {{start}}-{{end}} of {{total}}",
+    "page": "Page {{current}} of {{total}}"
+  },
+  "changelog": {
+    "title": "Changelog",
+    "loading": "Loading changelog...",
+    "error": "Failed to load changelog"
+  },
+  "navigation": {
+    "home": "Back to Home"
+  },
+  "loading": "Loading banks data...",
+  "error": "An error occurred while loading the data",
+  "noResults": "No banks found matching your criteria",
+  "developedBy": "Developed by"
+}

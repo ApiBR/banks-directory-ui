@@ -1,0 +1,78 @@
+{
+  "title": "Diretório de Bancos",
+  "htmlTitle": "Diretório de Bancos",
+  "search": {
+    "placeholder": "Buscar por nome ou COMPE..."
+  },
+  "sort": {
+    "label": "Ordenar por",
+    "options": {
+      "compe": "COMPE",
+      "name": "Nome",
+      "ispb": "ISPB",
+      "operationStarted": "Início da Operação",
+      "registered": "Data de Registro",
+      "pixStarted": "Início do PIX",
+      "updated": "Última Atualização"
+    }
+  },
+  "filters": {
+    "title": "Filtros",
+    "pixType": {
+      "label": "Tipo PIX",
+      "all": "Todos (DRCT + IDRT + Não PSP)",
+      "direct": "PSP Direto (DRCT)",
+      "indirect": "PSP Indireto (IDRT)",
+      "both": "PSP Direto e Indireto",
+      "notPsp": "Não é PSP"
+    },
+    "options": {
+      "all": "Todos",
+      "yes": "Sim",
+      "no": "Não"
+    },
+    "labels": {
+      "charge": "Cobrança",
+      "creditDocument": "Documento de Crédito",
+      "legalCheque": "Cheque Legal",
+      "detectaFlow": "Detecta Flow",
+      "pcr": "PCR",
+      "pcrp": "PCRP"
+    }
+  },
+  "bank": {
+    "products": "Produtos",
+    "dates": {
+      "operationStarted": "Início da Operação",
+      "pixStarted": "Início do PIX",
+      "registered": "Registrado",
+      "updated": "Atualizado"
+    },
+    "pixType": {
+      "direct": "PSP Direto",
+      "indirect": "PSP Indireto",
+      "notPsp": "Não é PSP"
+    },
+    "count": {
+      "total": "Total de Bancos",
+      "filtered": "Bancos Filtrados"
+    }
+  },
+  "pagination": {
+    "itemsPerPage": "Itens por página",
+    "showing": "Mostrando {{start}}-{{end}} de {{total}}",
+    "page": "Página {{current}} de {{total}}"
+  },
+  "changelog": {
+    "title": "Registro de Alterações",
+    "loading": "Carregando registro de alterações...",
+    "error": "Falha ao carregar o registro de alterações"
+  },
+  "navigation": {
+    "home": "Voltar para o Início"
+  },
+  "loading": "Carregando dados dos bancos...",
+  "error": "Ocorreu um erro ao carregar os dados",
+  "noResults": "Nenhum banco encontrado com os critérios selecionados",
+  "developedBy": "Desenvolvido por"
+}
