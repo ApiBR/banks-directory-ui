@@ -1,5 +1,5 @@
 import React from 'react';
-import { BankCard } from '../BankCard';
+import { BankCard } from './BankCard';
 import { Bank } from '@/types';
 
 interface BankListProps {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Check, X, ExternalLink } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { Bank } from '../types';
+import { Bank } from '../../types';
 
 interface BankCardProps {
   bank: Bank;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Moon, Sun } from 'lucide-react';
-import { useTheme } from '@/components/theme-provider';
+import { useTheme } from './theme-provider';
 
 interface ThemeSwitcherProps {
   variant?: 'default' | 'header';

@@ -22,9 +22,11 @@ export function Footer() {
         <div className="flex flex-col space-y-8">
           <div className="flex flex-col items-center space-y-4 sm:flex-row sm:justify-between sm:space-y-0">
             <div className="flex flex-col items-center sm:items-start space-y-4 sm:space-y-2">
-              <span className="text-muted-foreground text-center sm:text-left">© {currentYear} APIBR - Banks Directory</span>
+              <span className="text-muted-foreground text-center sm:text-left">
+                {t('footer.copyright', { year: currentYear })}
+              </span>
               <div className="flex items-center space-x-2">
-                <span className="text-muted-foreground">{t('developedBy')}</span>
+                <span className="text-muted-foreground">{t('footer.developedBy')}</span>
                 <a
                   href="https://guilherme.stracini.com.br/?utm_campaign=project&utm_media=api-br-banks-directory&utm_source=apibr.com"
                   target="_blank"
@@ -57,7 +59,7 @@ export function Footer() {
                     className="text-muted-foreground hover:text-foreground flex items-center space-x-2 transition-colors"
                   >
                     <Database className="h-5 w-5" />
-                    <span>Data Sources</span>
+                    <span>{t('footer.dataSources')}</span>
                     <ChevronDown className={`h-4 w-4 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
                   </button>
                   {isOpen && (
@@ -83,20 +85,20 @@ export function Footer() {
                   className="text-muted-foreground hover:text-foreground flex items-center space-x-2 transition-colors"
                 >
                   <Github className="h-5 w-5" />
-                  <span>GitHub</span>
+                  <span>{t('footer.github')}</span>
                 </a>
                 <Link
                   to="/changelog"
                   className="text-muted-foreground hover:text-foreground flex items-center space-x-2 transition-colors"
                 >
                   <FileText className="h-5 w-5" />
-                  <span>Changelog</span>
+                  <span>{t('footer.changelog')}</span>
                 </Link>
               </div>
               <div className="flex items-center space-x-2 text-muted-foreground whitespace-nowrap">
-                <span>Made with</span>
+                <span>{t('footer.madeWith')}</span>
                 <Heart className="h-5 w-5 text-green-500" />
-                <span>in Brazil</span>
+                <span>{t('footer.inBrazil')}</span>
               </div>
             </div>
           </div>

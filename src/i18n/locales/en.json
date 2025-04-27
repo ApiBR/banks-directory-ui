@@ -1,6 +1,6 @@
 {
   "title": "Banks Directory",
-  "htmlTitle": "Banks Directory",
+  "htmlTitle": "Banks Directory | API BR",
   "search": {
     "placeholder": "Search by name or COMPE..."
   },
@@ -74,5 +74,13 @@
   "loading": "Loading banks data...",
   "error": "An error occurred while loading the data",
   "noResults": "No banks found matching your criteria",
-  "developedBy": "Developed by"
+  "footer": {
+    "copyright": "© {{year}} APIBR - Banks Directory",
+    "developedBy": "Developed by",
+    "dataSources": "Data Sources",
+    "github": "GitHub",
+    "changelog": "Changelog",
+    "madeWith": "Made with",
+    "inBrazil": "in Brazil"
+  }
 }

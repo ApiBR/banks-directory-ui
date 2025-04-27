@@ -1,6 +1,6 @@
 {
   "title": "Diretório de Bancos",
-  "htmlTitle": "Diretório de Bancos",
+  "htmlTitle": "Diretório de Bancos | API BR",
   "search": {
     "placeholder": "Buscar por nome ou COMPE..."
   },
@@ -74,5 +74,13 @@
   "loading": "Carregando dados dos bancos...",
   "error": "Ocorreu um erro ao carregar os dados",
   "noResults": "Nenhum banco encontrado com os critérios selecionados",
-  "developedBy": "Desenvolvido por"
+  "footer": {
+    "copyright": "© {{year}} APIBR - Diretório de Bancos",
+    "developedBy": "Desenvolvido por",
+    "dataSources": "Fontes de Dados",
+    "github": "GitHub",
+    "changelog": "Registro de Alterações",
+    "madeWith": "Feito com",
+    "inBrazil": "no Brasil"
+  }
 }

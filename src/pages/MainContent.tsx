@@ -1,41 +1,77 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useMemo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { SearchBar } from '../SearchBar';
-import { FilterControls } from '../FilterControls';
+import { SearchBar } from '../components/MainContent/SearchBar';
+import { FilterControls } from '../components/MainContent/FilterControls';
 import { Bank } from '@/types';
-import { LoadingState } from './LoadingState';
-import { ErrorState } from './ErrorState';
-import { EmptyState } from './EmptyState';
-import { BankList } from './BankList';
-import { SortControls, type SortOption } from './SortControls';
-import { Pagination } from './Pagination';
-import { FilterHeader } from './FilterHeader';
+import { LoadingState } from '../components/MainContent/LoadingState';
+import { ErrorState } from '../components/MainContent/ErrorState';
+import { EmptyState } from '../components/MainContent/EmptyState';
+import { BankList } from '../components/MainContent/BankList';
+import { SortControls, type SortOption } from '../components/MainContent/SortControls';
+import { Pagination } from '../components/MainContent/Pagination';
+import { ItemsPerPage } from '../components/MainContent/ItemsPerPage';
+import { FilterHeader } from '../components/MainContent/FilterHeader';
+import { useLocalStorage } from '@/hooks/useLocalStorage';
 
 type PixFilterValue = 'all' | 'DRCT' | 'IDRT' | 'both' | 'not-psp';
 
-export function MainContent() {
-  const [banks, setBanks] = useState<Bank[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [search, setSearch] = useState('');
-  const [pixFilter, setPixFilter] = useState<PixFilterValue>('all');
-  const [sortBy, setSortBy] = useState<SortOption>('compe');
-  const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(30);
-  const [filters, setFilters] = useState<Record<string, 'all' | 'yes' | 'no'>>({
+interface UserPreferences {
+  search: string;
+  pixFilter: PixFilterValue;
+  sortBy: SortOption;
+  sortDirection: 'asc' | 'desc';
+  currentPage: number;
+  itemsPerPage: number;
+  filters: Record<string, 'all' | 'yes' | 'no'>;
+}
+
+const defaultPreferences: UserPreferences = {
+  search: '',
+  pixFilter: 'all',
+  sortBy: 'compe',
+  sortDirection: 'asc',
+  currentPage: 1,
+  itemsPerPage: 30,
+  filters: {
     Charge: 'all',
     CreditDocument: 'all',
     LegalCheque: 'all',
     DetectaFlow: 'all',
     PCR: 'all',
     PCRP: 'all',
-  });
+  },
+};
+
+export function MainContent() {
+  const [banks, setBanks] = React.useState<Bank[]>([]);
+  const [loading, setLoading] = React.useState(true);
+  const [error, setError] = React.useState<string | null>(null);
+  const [preferences, setPreferences] = useLocalStorage<UserPreferences>(
+    'banks-directory-preferences',
+    defaultPreferences
+  );
+
+  const {
+    search,
+    pixFilter,
+    sortBy,
+    sortDirection,
+    currentPage,
+    itemsPerPage,
+    filters,
+  } = preferences;
+
+  const updatePreference = <K extends keyof UserPreferences>(
+    key: K,
+    value: UserPreferences[K]
+  ) => {
+    setPreferences((prev) => ({ ...prev, [key]: value }));
+  };
 
   useEffect(() => {
     const fetchBanks = async () => {
       try {
-        const response = await fetch('https://raw.githubusercontent.com/guibranco/BancosBrasileiros/refs/heads/main/data/bancos.json');
+        const response = await fetch('https://raw.githubusercontent.com/guibranco/BancosBrasileiros/main/data/bancos.json');
         if (!response.ok) {
           throw new Error('Failed to fetch banks data');
         }
@@ -132,14 +168,11 @@ export function MainContent() {
   const currentBanks = filteredBanks.slice(startIndex, endIndex);
 
   useEffect(() => {
-    setCurrentPage(1); // Reset to first page when filters change
+    updatePreference('currentPage', 1);
   }, [search, filters, pixFilter, itemsPerPage]);
 
   const handleFilterChange = (key: string, value: 'all' | 'yes' | 'no') => {
-    setFilters(prev => ({
-      ...prev,
-      [key]: value
-    }));
+    updatePreference('filters', { ...filters, [key]: value });
   };
 
   const isFiltered = search || pixFilter !== 'all' || Object.values(filters).some(value => value !== 'all');
@@ -152,12 +185,15 @@ export function MainContent() {
     <main className="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
       <div className="space-y-6">
         <div className="flex flex-col md:flex-row md:items-center md:space-x-4">
-          <div className="grow">
-            <SearchBar value={search} onChange={setSearch} />
+          <div className="flex-grow">
+            <SearchBar 
+              value={search} 
+              onChange={(value) => updatePreference('search', value)} 
+            />
           </div>
         </div>
         
-        <div className="bg-card p-4 rounded-lg shadow-xs">
+        <div className="bg-card p-4 rounded-lg shadow-sm">
           <FilterHeader
             totalBanks={banks.length}
             filteredCount={filteredBanks.length}
@@ -167,42 +203,48 @@ export function MainContent() {
             filters={filters} 
             onChange={handleFilterChange} 
             pixFilter={pixFilter}
-            onPixFilterChange={setPixFilter}
+            onPixFilterChange={(value) => updatePreference('pixFilter', value)}
           />
         </div>
 
         <div className="flex flex-col space-y-4">
-          <div className="flex flex-wrap justify-center sm:justify-start items-center gap-4">
-            <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              itemsPerPage={itemsPerPage}
-              totalItems={filteredBanks.length}
-              startIndex={startIndex}
-              endIndex={endIndex}
-              onPageChange={setCurrentPage}
-              onItemsPerPageChange={setItemsPerPage}
-            />
-            <SortControls
-              sortBy={sortBy}
-              sortDirection={sortDirection}
-              onSortChange={setSortBy}
-              onDirectionChange={() => setSortDirection(prev => prev === 'asc' ? 'desc' : 'asc')}
-            />
+          <div className="flex flex-col space-y-4 sm:space-y-0">
+            <div className="flex flex-col space-y-4 sm:flex-row sm:justify-between sm:items-center">
+              <ItemsPerPage
+                value={itemsPerPage}
+                onChange={(items) => updatePreference('itemsPerPage', items)}
+              />
+              <SortControls
+                sortBy={sortBy}
+                sortDirection={sortDirection}
+                onSortChange={(sort) => updatePreference('sortBy', sort)}
+                onDirectionChange={() => 
+                  updatePreference('sortDirection', sortDirection === 'asc' ? 'desc' : 'asc')
+                }
+              />
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                totalItems={filteredBanks.length}
+                startIndex={startIndex}
+                endIndex={endIndex}
+                onPageChange={(page) => updatePreference('currentPage', page)}
+              />
+            </div>
           </div>
 
           <BankList banks={currentBanks} />
 
-          <Pagination
-            currentPage={currentPage}
-            totalPages={totalPages}
-            itemsPerPage={itemsPerPage}
-            totalItems={filteredBanks.length}
-            startIndex={startIndex}
-            endIndex={endIndex}
-            onPageChange={setCurrentPage}
-            onItemsPerPageChange={setItemsPerPage}
-          />
+          <div className="flex justify-end">
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              totalItems={filteredBanks.length}
+              startIndex={startIndex}
+              endIndex={endIndex}
+              onPageChange={(page) => updatePreference('currentPage', page)}
+            />
+          </div>
         </div>
       </div>
     </main>
