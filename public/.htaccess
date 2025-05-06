@@ -1,6 +1,5 @@
 RewriteEngine on
 
-# Combined HTTPS enforcement + canonical host redirect
 RewriteCond %{HTTPS} !=on [OR]
 RewriteCond %{HTTP_HOST} !^apibr\.com$ [NC]
 RewriteRule ^ https://apibr.com%{REQUEST_URI} [L,R=301,NC]
