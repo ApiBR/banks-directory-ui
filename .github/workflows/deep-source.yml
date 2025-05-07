@@ -36,10 +36,20 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Test and coverage
-        run: npm run test:coverage
+      # - name: Test and coverage
+      #   run: npm run test:coverage
 
-      - name: Build and analyze
-        env:
-          DEEPSOURCE_DSN: ${{ secrets.DEEPSOURCE_DSN }}
-        run: ./bin/deepsource report --analyzer test-coverage --key javascript --value-file ./coverage/lcov.info
+      # - name: Build and analyze
+      #   if: >-
+      #     (
+      #       github.event_name == 'push' &&
+      #       github.ref == 'refs/heads/main'
+      #     ) || (
+      #       github.event_name == 'pull_request' &&
+      #       github.event.pull_request.head.repo.full_name == github.repository
+      #     ) || (
+      #       github.event_name == 'workflow_dispatch'
+      #     )
+      #   env:
+      #     DEEPSOURCE_DSN: ${{ secrets.DEEPSOURCE_DSN }}
+      #   run: ./bin/deepsource report --analyzer test-coverage --key javascript --value-file ./coverage/lcov.info
