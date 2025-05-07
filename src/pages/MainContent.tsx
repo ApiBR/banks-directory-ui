@@ -185,7 +185,7 @@ export function MainContent() {
     <main className="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
       <div className="space-y-6">
         <div className="flex flex-col md:flex-row md:items-center md:space-x-4">
-          <div className="flex-grow">
+          <div className="grow">
             <SearchBar 
               value={search} 
               onChange={(value) => updatePreference('search', value)} 
@@ -193,7 +193,7 @@ export function MainContent() {
           </div>
         </div>
         
-        <div className="bg-card p-4 rounded-lg shadow-sm">
+        <div className="bg-card p-4 rounded-lg shadow-xs">
           <FilterHeader
             totalBanks={banks.length}
             filteredCount={filteredBanks.length}
