@@ -28,7 +28,7 @@ export function LanguageSwitcher({ variant = 'default' }: LanguageSwitcherProps)
       <select
         value={language}
         onChange={(e) => handleLanguageChange(e.target.value)}
-        className={`px-2 py-1.5 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent ${
+        className={`px-2 py-1.5 text-sm border rounded-lg focus:outline-hidden focus:ring-2 focus:ring-ring focus:border-transparent ${
           variant === 'header' 
             ? 'bg-transparent text-[hsl(var(--header-foreground))] border-[hsl(var(--header-foreground))] hover:bg-[hsl(var(--header-foreground))/0.1]' 
             : 'bg-background text-foreground border-input'
