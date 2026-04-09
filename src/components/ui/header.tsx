@@ -3,7 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { LanguageSwitcher } from './language-switcher';
 import { ThemeSwitcher } from './theme-switcher';
 import { Link } from 'react-router-dom';
-import { Github, FileText } from 'lucide-react';
+import { FileText } from 'lucide-react';
+import { GitHubIcon } from "@/components/Icons/GitHubIcon";
 
 export function Header() {
   const { t } = useTranslation();
@@ -29,7 +30,7 @@ export function Header() {
                 rel="noopener noreferrer"
                 className="text-[hsl(var(--header-foreground))] hover:text-[hsl(var(--header-foreground))/0.8] flex items-center space-x-2 transition-colors"
               >
-                <Github className="h-5 w-5" />
+                <GitHubIcon className="h-5 w-5" />
                 <span className="hidden sm:inline">{t('footer.github')}</span>
               </a>
               <Link
