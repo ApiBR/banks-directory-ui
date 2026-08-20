@@ -4,6 +4,7 @@ export interface Bank {
   Document: string;
   LongName: string;
   ShortName: string;
+  LogoUrl: string | null;
   Network: string;
   Type: string | null;
   PixType: string | null;

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Heart, FileText, Database, ChevronDown } from 'lucide-react';
-import { GitHubIcon } from "@/components/Icons/GitHubIcon";
+import { Heart, FileText, Database, ChevronDown, Github } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export function Footer() {
@@ -85,7 +84,7 @@ export function Footer() {
                   rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-foreground flex items-center space-x-2 transition-colors"
                 >
-                  <GitHubIcon className="h-5 w-5" />
+                  <Github className="h-5 w-5" />
                   <span>{t('footer.github')}</span>
                 </a>
                 <Link

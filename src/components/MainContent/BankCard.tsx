@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Check, X, ExternalLink } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { Bank } from '../../types';
@@ -9,6 +9,7 @@ interface BankCardProps {
 
 export function BankCard({ bank }: BankCardProps) {
   const { t } = useTranslation();
+  const [logoError, setLogoError] = useState(false);
 
   const formatDate = (dateString: string | null) => {
     if (!dateString) return '-';
@@ -46,9 +47,20 @@ export function BankCard({ bank }: BankCardProps) {
   return (
     <div className="bg-white p-6 rounded-lg shadow-md">
       <div className="flex justify-between items-start mb-4">
-        <div>
-          <h3 className="text-lg font-semibold text-gray-900">{bank.LongName}</h3>
-          <p className="text-sm text-gray-500">{bank.ShortName}</p>
+        <div className="flex items-center space-x-3">
+          {bank.LogoUrl && !logoError && (
+            <img
+              src={bank.LogoUrl}
+              alt={`${bank.ShortName} logo`}
+              className="h-10 w-10 object-contain rounded"
+              loading="lazy"
+              onError={() => setLogoError(true)}
+            />
+          )}
+          <div>
+            <h3 className="text-lg font-semibold text-gray-900">{bank.LongName}</h3>
+            <p className="text-sm text-gray-500">{bank.ShortName}</p>
+          </div>
         </div>
         <a 
           href={bank.Url} 
